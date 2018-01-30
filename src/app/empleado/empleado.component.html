@@ -1,0 +1,76 @@
+
+	 <h1>{{titulo_componente}}</h1>
+
+	 <hr/>
+	 <h3>Selector de colores:</h3>
+	 <button (click)="logColorSeleccionado()">Mostrar Log</button>
+	 <input type="text" [(ngModel)]="colorSeleccionado"/>
+
+
+	 <strong>Color Elegido:</strong>
+	 <pre [style.border]="colorSeleccionado == 'red'? '5px solid black' : '1px solid green'"
+	 [ngClass]="{
+	 fondoAzul:colorSeleccionado == 'blue',
+     fondoVerde:colorSeleccionado == 'green'
+    }">
+	 	{{colorSeleccionado}}	 </pre>
+	 <div  [ngStyle]="{
+	 'background':colorSeleccionado ,
+	 'width':'200px',
+	 'height':'200px',
+	 'float':'right',
+	  'margin-right':'69%'}"></div>
+	  <div style="clear:both"></div>
+
+	 <hr/>	
+	<strong>Empleado Estrella <strong>
+	<br>
+	<br>
+<div *ngIf="trabajadorExterno==true">
+	<button (click)="cambiarValor(false)">Mostrar trabajador</button>
+	
+	<ul >
+	<li>{{trabajadores[1].nombre}}</li>
+	<li>{{trabajadores[1].edad}}</li>
+	<li>{{trabajadores[1].cargo}}</li>
+	<li *ngIf="trabajadores[1].contratado==true">Esta contratado</li>
+	</ul>
+</div>
+
+<div *ngIf="trabajadorExterno==false">
+<button (click)="cambiarValor(true)">Mostrar empleado</button>
+	<ul >
+	<li>{{empleado.nombre}}</li>
+	<li>{{empleado.edad}}</li>
+	<li>{{empleado.cargo}}</li>
+	<li *ngIf="empleado.contratado==false">No esta contratado</li>
+	</ul>
+
+	</div>
+<hr/>
+	<h3>Listado de Empleados</h3>
+
+<ul>
+	<li *ngFor="let empleado of trabajadores; let i=index">
+	Empleado{{i}}:
+	<ul >
+	<li>{{empleado.nombre}}</li>
+	<li>{{empleado.edad}}</li>
+	<li>{{empleado.cargo}}</li>
+	<li *ngIf="empleado.contratado==false">No esta contratado</li>
+	<li *ngIf="empleado.contratado==true">Esta contratado</li>
+		
+	</ul>
+		
+	</li>
+</ul>
+
+<hr/>
+<h3>Colores switch</h3>
+<ul [ngSwitch]="color">
+	<li *ngSwitchCase="'red'" [ngStyle]="{'background':color , 'color':'white'}">Es de color rojo</li>
+	<li *ngSwitchCase="'green'" [ngStyle]="{'background':color , 'color':'white'}">Es de color rojo</li>
+	<li *ngSwitchCase="'blue'" [ngStyle]="{'background':color , 'color':'white'}">Es de color rojo</li>
+</ul>
+	
+	
